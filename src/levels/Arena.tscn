@@ -1,0 +1,9 @@
+[gd_scene format=2]
+
+[node name="Arena" type="Node2D"]
+
+[node name="GroundLayer" type="TileMap" parent="."]
+format = 1
+
+[node name="WallLayer" type="TileMap" parent="."]
+format = 1
