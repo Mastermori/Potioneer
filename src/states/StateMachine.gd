@@ -38,6 +38,12 @@ func _on_animation_finished(anim_name):
 func _change_state(state_name):
 	if not _active:
 		return
+	
+#	print("Current state stack:")
+#	for state in states_stack:
+#		print(state.name)
+#	print("Tried to change with: " + state_name)
+	
 	current_state.exit()
 	
 	if state_name == "previous":

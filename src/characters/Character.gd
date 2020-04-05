@@ -17,6 +17,6 @@ func play_anim(anim_name):
 		character_anims.play(anim_name)
 
 func anim_finished(anim_name):
-	print("Finished animation: " + anim_name + " on " + name)
+#	print("Finished animation: " + anim_name + " on " + name)
 	pass
 

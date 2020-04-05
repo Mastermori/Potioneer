@@ -19,6 +19,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/states/character_states/motion/Motion.gd"
 }, {
+"base": "PlayerMotion",
+"class": "OpenMixMenu",
+"language": "GDScript",
+"path": "res://src/states/player_states/OpenMixMenu.gd"
+}, {
 "base": "Character",
 "class": "Player",
 "language": "GDScript",
@@ -39,6 +44,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/states/player_states/motion/PlayerStanding.gd"
 }, {
+"base": "StateMachine",
+"class": "PlayerStateMachine",
+"language": "GDScript",
+"path": "res://src/states/player_states/PlayerStateMachine.gd"
+}, {
 "base": "PlayerMotion",
 "class": "PlayerWalking",
 "language": "GDScript",
@@ -57,10 +67,12 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "Character": "",
 "Motion": "",
+"OpenMixMenu": "",
 "Player": "",
 "PlayerDash": "",
 "PlayerMotion": "",
 "PlayerStanding": "",
+"PlayerStateMachine": "",
 "PlayerWalking": "",
 "State": "",
 "StateMachine": ""
@@ -69,11 +81,14 @@ _global_script_class_icons={
 [application]
 
 config/name="Potioneer"
+run/main_scene="res://src/levels/Arena.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
 Global="*res://src/Global.gd"
+AudioLib="*res://src/AudioLibrary.gd"
+Music="*res://src/MusicMaker.gd"
 
 [display]
 

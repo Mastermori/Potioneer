@@ -1,0 +1,104 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://src/characters/Character.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/states/player_states/PlayerStateMachine.gd" type="Script" id=2]
+[ext_resource path="res://src/states/player_states/motion/PlayerWalking.gd" type="Script" id=3]
+[ext_resource path="res://src/states/player_states/motion/PlayerStanding.gd" type="Script" id=4]
+[ext_resource path="res://src/states/player_states/motion/PlayerDash.gd" type="Script" id=5]
+[ext_resource path="res://assets/art/base_original.png" type="Texture" id=6]
+[ext_resource path="res://src/characters/player/TestPlayer.gd" type="Script" id=7]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 32, 32 )
+
+[sub_resource type="Animation" id=6]
+resource_name = "INIT"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "idle"
+
+[sub_resource type="Animation" id=2]
+resource_name = "mix"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.9 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.219608, 1, 0, 1 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "walk_down"
+length = 0.5
+loop = true
+step = 0.25
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.25 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 1, 2 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "walk_right"
+
+[sub_resource type="Animation" id=5]
+resource_name = "walk_up"
+
+[node name="Player" instance=ExtResource( 1 )]
+script = ExtResource( 7 )
+
+[node name="Sprite" parent="." index="0"]
+texture = ExtResource( 6 )
+vframes = 8
+hframes = 7
+frame = 32
+
+[node name="Collider" type="CollisionShape2D" parent="." index="2"]
+visible = false
+shape = SubResource( 1 )
+
+[node name="PlayerAnimations" type="AnimationPlayer" parent="." index="3"]
+anims/INIT = SubResource( 6 )
+anims/idle = SubResource( 7 )
+anims/mix = SubResource( 2 )
+anims/walk_down = SubResource( 3 )
+anims/walk_right = SubResource( 4 )
+anims/walk_up = SubResource( 5 )
+
+[node name="PlayerStateMachine" type="Node" parent="." index="4"]
+script = ExtResource( 2 )
+default_state = NodePath("PlayerStanding")
+
+[node name="PlayerStanding" type="Node" parent="PlayerStateMachine" index="0"]
+script = ExtResource( 4 )
+
+[node name="PlayerWalking" type="Node" parent="PlayerStateMachine" index="1"]
+script = ExtResource( 3 )
+
+[node name="PlayerDash" type="Node" parent="PlayerStateMachine" index="2"]
+script = ExtResource( 5 )
