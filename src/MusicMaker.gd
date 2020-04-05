@@ -11,7 +11,7 @@ var music := {}
 var current_mood = Mood.SUSPENSEFUL setget set_mood
 var current_track : Track
 
-var crossfade_duration := 3
+var crossfade_duration := 5
 
 onready var timer := Timer.new()
 onready var tween := Tween.new()
@@ -117,13 +117,18 @@ func _ready():
 func set_mood(mood : int):
 	current_mood = mood
 
+func set_mood_priority(mood : int):
+	set_mood(mood)
+	if current_track.is_loopable:
+		current_track.loop_counter = 20
+	timer.stop()
+	play_next_part()
+
 func start():
-#	start_next_track(false)
-	print(music)
-	for mood in music:
-		for track in music[mood]:
-			print(track._full)
-	
+#	print(music)
+#	for mood in music:
+#		for track in music[mood]:
+#			print(track._full)
 	next_track()
 
 func play_next_part():
@@ -137,15 +142,16 @@ func play_next_part():
 				timer.start(current_track.get_current_time_left() / 2)
 			else:
 				current_track.loop()
-				timer.start(current_track.get_current_time_left() - crossfade_duration)
+				timer.start(clamp(current_track.get_current_time_left() - crossfade_duration, 0.1, 10000))
 	else:
 		next_track()
 
 func next_track():
 	var new_track := get_random_track()
-	if current_track:
-		transition(current_track.player, new_track.player, current_track.get_current_time_left())
 	new_track.play()
+	if current_track:
+		var time_left = current_track.get_current_time_left()
+		transition(current_track.player, new_track.player, clamp(time_left, 0.1, crossfade_duration))
 	current_track = new_track
 	if current_track.is_loopable:
 		timer.start(current_track.get_current_time_left() - .1)
@@ -160,8 +166,8 @@ func get_random_track() -> Track:
 
 func transition(from : AudioStreamPlayer, to : AudioStreamPlayer, duration : float):
 	print("Transition duration: " + str(duration))
-	tween.interpolate_property(from, "volume_db", from.volume_db, -80, duration)
-	tween.interpolate_property(to, "volume_db", -40, 0, duration)
+	tween.interpolate_property(from, "volume_db", from.volume_db, -40, duration, Tween.TRANS_CUBIC, Tween.EASE_IN)
+	tween.interpolate_property(to, "volume_db", -40, 0, duration, Tween.TRANS_CUBIC, Tween.EASE_IN)
 	tween.start()
 
 func transition_finished(_object, _key):

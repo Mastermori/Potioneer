@@ -11,6 +11,10 @@ func play_anim(anim_name):
 	else:
 		.play_anim(anim_name)
 
+func _input(event):
+	if event.is_action_pressed("debug"):
+		Music.set_mood_priority(Music.Mood.PEACEFUL)
+
 func _ready():
 	for i in range(8):
 		var anim = Animation.new()
