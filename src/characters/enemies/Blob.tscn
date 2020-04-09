@@ -130,11 +130,12 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="CircleShape2D" id=6]
-
 [sub_resource type="CapsuleShape2D" id=7]
 radius = 5.0
-height = 17.0
+height = 13.0
+
+[sub_resource type="CircleShape2D" id=6]
+radius = 15.0
 
 [node name="Blob" instance=ExtResource( 1 )]
 scale = Vector2( 0.5, 0.5 )
@@ -144,7 +145,6 @@ script = ExtResource( 3 )
 position = Vector2( 0, -6 )
 texture = ExtResource( 2 )
 vframes = 2
-frame = 2
 
 [node name="CharacterAnimations" parent="." index="1"]
 anims/INIT = SubResource( 1 )
@@ -182,24 +182,24 @@ script = ExtResource( 8 )
 script = ExtResource( 9 )
 death_sound = "blob/death"
 
-[node name="Hurtbox" type="Area2D" parent="." index="5"]
+[node name="Collider" type="CollisionShape2D" parent="." index="5"]
+position = Vector2( 0, 2 )
+rotation = 1.5708
+shape = SubResource( 7 )
+
+[node name="AggroArea" parent="." index="6"]
+visible = false
+
+[node name="DeaggroArea" parent="." index="7"]
+visible = false
+
+[node name="Hurtbox" type="Area2D" parent="." index="8"]
 visible = false
 position = Vector2( 0, -3 )
+monitorable = false
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" index="0"]
 modulate = Color( 0.964706, 0, 0, 1 )
 shape = SubResource( 6 )
-
-[node name="Collider" type="CollisionShape2D" parent="." index="6"]
-visible = false
-position = Vector2( 0, 2 )
-rotation = 1.5708
-shape = SubResource( 7 )
-
-[node name="AggroArea" parent="." index="7"]
-visible = false
-
-[node name="DeaggroArea" parent="." index="8"]
-visible = false
-[connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
+[connection signal="area_entered" from="Hurtbox" to="BlobStateMachine/BlobChase" method="_on_Hurtbox_area_entered"]

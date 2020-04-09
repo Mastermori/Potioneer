@@ -17,10 +17,3 @@ func _physics_process(delta):
 
 func move_sound():
 	AudioLib.play_sound("blob/move", 0, self, true, .9 + randf() * .2)
-
-func _on_Hurtbox_area_entered(area):
-	if area.name == "Hitbox" and area.owner.is_in_group("play"):
-		print("Hit player")
-		var player = area.owner
-		player.take_damage(damage)
-		player.knockback((player.global_position - global_position).normalized() * knockback)

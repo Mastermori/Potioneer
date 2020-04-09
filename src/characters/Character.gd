@@ -22,6 +22,8 @@ onready var sprite := $Sprite
 onready var character_anims := $CharacterAnimations
 
 func _ready():
+	if Engine.editor_hint:
+		return
 	for node in get_children():
 		if node is AnimationPlayer:
 			node.connect("animation_finished", self, "anim_finished")
@@ -38,6 +40,8 @@ func knockback(vel : Vector2):
 	impulse += vel
 
 func _physics_process(delta):
+	if Engine.editor_hint:
+		return
 	move_and_slide(impulse)
 	
 	impulse *= .9
@@ -46,7 +50,6 @@ func _physics_process(delta):
 
 func take_damage(amount : int):
 	health -= amount
-	print("took damage")
 	if health <= 0:
 		hitbox.set_deferred("monitorable", false)
 		die()
@@ -57,7 +60,6 @@ func take_damage(amount : int):
 		emit_signal("took_damage", health, health + amount, max_health)
 
 func die():
-	print("I died: " + name)
 	state_machine._change_state("die")
 	emit_signal("died")
 

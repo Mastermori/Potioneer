@@ -29,7 +29,6 @@ func get_target() -> Character:
 		return targets[0]
 
 func _on_AggroArea_body_entered(body):
-	print(body.name)
 	if body.is_in_group("player"):
 		targets.append(body)
 		emit_signal("got_target", body)

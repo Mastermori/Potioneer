@@ -14,5 +14,6 @@ func enter():
 func on_animation_finished(anim_name):
 	if anim_name == "die":
 		if not owner.is_in_group("player"):
+			owner.state_machine.set_active(false)
 			owner.queue_free()
 #		emit_signal("finished", "dead")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://src/characters/Character.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/states/player_states/PlayerStateMachine.gd" type="Script" id=2]
@@ -143,6 +143,66 @@ tracks/2/keys = {
 "values": [ false ]
 }
 
+[sub_resource type="Animation" id=9]
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=10]
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 6 ]
+}
+
+[sub_resource type="Animation" id=11]
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 12 ]
+}
+
+[sub_resource type="Animation" id=12]
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 18 ]
+}
+
 [sub_resource type="Animation" id=7]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:modulate")
@@ -155,6 +215,174 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ), Color( 0.219608, 1, 0, 1 ) ]
+}
+
+[sub_resource type="Animation" id=17]
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 3, 4, 5 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("MeeleContainer/Hurtbox:monitoring")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=18]
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 9, 10, 11 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("MeeleContainer/Hurtbox:monitoring")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=19]
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 15, 16, 17 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("MeeleContainer/Hurtbox:monitoring")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=20]
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 21, 22, 23 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("MeeleContainer/Hurtbox:monitoring")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=25]
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 1, 2 ]
+}
+
+[sub_resource type="Animation" id=26]
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 7, 8 ]
+}
+
+[sub_resource type="Animation" id=27]
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 13, 14 ]
+}
+
+[sub_resource type="Animation" id=28]
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 19, 20 ]
 }
 
 [sub_resource type="CapsuleShape2D" id=8]
@@ -172,12 +400,15 @@ position = Vector2( 0, -16 )
 texture = ExtResource( 6 )
 vframes = 5
 hframes = 6
-frame = 24
+frame = 5
 
 [node name="CharacterAnimations" parent="." index="1"]
 anims/INIT = SubResource( 1 )
 anims/die = SubResource( 2 )
 anims/hurt = SubResource( 3 )
+
+[node name="Hitbox" parent="." index="2"]
+collision_layer = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" index="0"]
 position = Vector2( 0, -10 )
@@ -190,7 +421,19 @@ shape = SubResource( 5 )
 
 [node name="PlayerAnimations" type="AnimationPlayer" parent="." index="4"]
 anims/INIT = SubResource( 6 )
+anims/idle_0 = SubResource( 9 )
+anims/idle_1 = SubResource( 10 )
+anims/idle_2 = SubResource( 11 )
+anims/idle_3 = SubResource( 12 )
 anims/mix = SubResource( 7 )
+anims/punch_0 = SubResource( 17 )
+anims/punch_1 = SubResource( 18 )
+anims/punch_2 = SubResource( 19 )
+anims/punch_3 = SubResource( 20 )
+anims/walk_0 = SubResource( 25 )
+anims/walk_1 = SubResource( 26 )
+anims/walk_2 = SubResource( 27 )
+anims/walk_3 = SubResource( 28 )
 
 [node name="PlayerStateMachine" type="Node" parent="." index="5"]
 script = ExtResource( 2 )
@@ -220,7 +463,6 @@ position = Vector2( 0, -10 )
 
 [node name="Hurtbox" type="Area2D" parent="MeeleContainer" index="0"]
 position = Vector2( 14, 0 )
-monitoring = false
 monitorable = false
 collision_layer = 0
 collision_mask = 18
@@ -238,5 +480,8 @@ smoothing_enabled = true
 
 [node name="DeathTimer" type="Timer" parent="." index="8"]
 one_shot = true
+
+[node name="PotionSpawn" type="Position2D" parent="." index="9"]
+position = Vector2( -2.77772, -8.47935 )
 [connection signal="area_entered" from="MeeleContainer/Hurtbox" to="PlayerStateMachine/Punch" method="_on_Hurtbox_area_entered"]
 [connection signal="timeout" from="DeathTimer" to="." method="_on_DeathTimer_timeout"]
