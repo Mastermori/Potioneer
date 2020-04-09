@@ -92,3 +92,5 @@ custom_fonts/font = SubResource( 1 )
 text = "No"
 
 [node name="ScreenTransition" parent="." instance=ExtResource( 3 )]
+[connection signal="pressed" from="Margin/HBoxContainer/VBoxContainer/HBoxContainer/YesButton" to="." method="_on_YesButton_pressed"]
+[connection signal="pressed" from="Margin/HBoxContainer/VBoxContainer/HBoxContainer/NoButton" to="." method="_on_NoButton_pressed"]

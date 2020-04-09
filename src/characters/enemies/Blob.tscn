@@ -112,6 +112,23 @@ tracks/0/keys = {
 "update": 1,
 "values": [ 0, 1, 2, 3, 2 ]
 }
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.7 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "move_sound"
+}, {
+"args": [  ],
+"method": "move_sound"
+} ]
+}
 
 [sub_resource type="CircleShape2D" id=6]
 
@@ -127,7 +144,7 @@ script = ExtResource( 3 )
 position = Vector2( 0, -6 )
 texture = ExtResource( 2 )
 vframes = 2
-frame = 4
+frame = 2
 
 [node name="CharacterAnimations" parent="." index="1"]
 anims/INIT = SubResource( 1 )
@@ -163,6 +180,7 @@ script = ExtResource( 8 )
 
 [node name="Die" type="Node" parent="BlobStateMachine" index="4"]
 script = ExtResource( 9 )
+death_sound = "blob/death"
 
 [node name="Hurtbox" type="Area2D" parent="." index="5"]
 visible = false

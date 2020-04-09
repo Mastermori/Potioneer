@@ -213,6 +213,7 @@ script = ExtResource( 9 )
 
 [node name="Die" type="Node" parent="PlayerStateMachine" index="5"]
 script = ExtResource( 10 )
+death_sound = "player/death"
 
 [node name="MeeleContainer" type="Position2D" parent="." index="6"]
 position = Vector2( 0, -10 )

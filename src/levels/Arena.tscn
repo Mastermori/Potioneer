@@ -29,38 +29,3 @@ position = Vector2( 131.986, 119.416 )
 "enemies",
 ] instance=ExtResource( 3 )]
 position = Vector2( 328.219, 127.796 )
-
-[node name="Blob2" parent="GameObjects/Enemies" groups=[
-"enemies",
-] instance=ExtResource( 3 )]
-position = Vector2( 247.547, 205.317 )
-
-[node name="Blob3" parent="GameObjects/Enemies" groups=[
-"enemies",
-] instance=ExtResource( 3 )]
-position = Vector2( 217.925, 255.107 )
-
-[node name="Blob4" parent="GameObjects/Enemies" groups=[
-"enemies",
-] instance=ExtResource( 3 )]
-position = Vector2( 270.236, 236.199 )
-
-[node name="Blob5" parent="GameObjects/Enemies" groups=[
-"enemies",
-] instance=ExtResource( 3 )]
-position = Vector2( 292.925, 193.972 )
-
-[node name="Blob6" parent="GameObjects/Enemies" groups=[
-"enemies",
-] instance=ExtResource( 3 )]
-position = Vector2( 266.455, 160.569 )
-
-[node name="Blob7" parent="GameObjects/Enemies" groups=[
-"enemies",
-] instance=ExtResource( 3 )]
-position = Vector2( 197.127, 228.006 )
-
-[node name="Blob8" parent="GameObjects/Enemies" groups=[
-"enemies",
-] instance=ExtResource( 3 )]
-position = Vector2( 217.295, 179.477 )

@@ -25,6 +25,7 @@ func move():
 	tween.interpolate_property(owner, "vel", owner.vel, dir * speed, 1, Tween.TRANS_LINEAR, Tween.EASE_IN)
 	tween.start()
 	owner.play_anim("move")
+	AudioLib.play_sound("blob/move", 0, self, true)
 
 func update(_delta):
 	if not owner.targets.empty():

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Blob_movement.wav-b97e44bea0bf78187e16164cd0420454.sample"
+
+[deps]
+
+source_file="res://assets/sounds/blob/move/Blob_movement.wav"
+dest_files=[ "res://.import/Blob_movement.wav-b97e44bea0bf78187e16164cd0420454.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -50,15 +50,19 @@ func play_random_music(name : String, pitch_scale = 1.0, volume_db = 0.0, bus :=
 	play_music(name, randi() % music[name].size(), pitch_scale, volume_db, bus)
 
 func play_sound(name : String, index : int, parent : Node, is_positional := false, pitch_scale = 1.0, volume_db = 0.0, bus = "SFX") -> void:
+	check_sound(name)
+	play_audio(sounds[name][index], parent, is_positional, pitch_scale, volume_db, bus)
+
+func play_random_sound(name : String, parent : Node, is_positional := false, pitch_scale = 1.0, volume_db = 0.0, bus := "SFX") -> void:
+	check_sound(name)
+	play_sound(name, randi() % sounds[name].size(), parent, is_positional, pitch_scale, volume_db, bus)
+
+func check_sound(name):
 	if not sounds.has(name):
 		add_sound(name)
 		if sounds[name].size() < 1:
 			printerr("Can't find sound: " + str(name))
 			return
-	play_audio(sounds[name][index], parent, is_positional, pitch_scale, volume_db, bus)
-
-func play_random_sound(name : String, parent : Node, is_positional := false, pitch_scale = 1.0, volume_db = 0.0, bus := "SFX") -> void:
-	play_sound(name, randi() % sounds[name].size(), parent, is_positional, pitch_scale, volume_db, bus)
 
 func play_audio(audio : AudioStream, parent : Node, is_positional := false, pitch_scale = 1.0, volume_db = 0.0, bus = "Master") -> void:
 	var audio_stream_player : Node

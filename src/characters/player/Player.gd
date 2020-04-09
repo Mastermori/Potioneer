@@ -14,6 +14,7 @@ func play_anim(anim_name):
 
 func die():
 	.die()
+	AudioLib.play_sound("player/death", 0, self, false)
 	$DeathTimer.start(.5)
 
 func _input(event):

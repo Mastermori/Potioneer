@@ -15,6 +15,8 @@ func anim_finished(anim_name : String):
 func _physics_process(delta):
 	move_and_slide(vel * rand_range(.9, 1.1))
 
+func move_sound():
+	AudioLib.play_sound("blob/move", 0, self, true, .9 + randf() * .2)
 
 func _on_Hurtbox_area_entered(area):
 	if area.name == "Hitbox" and area.owner.is_in_group("play"):
