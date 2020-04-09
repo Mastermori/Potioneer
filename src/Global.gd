@@ -1,6 +1,7 @@
 extends Node
 
 var level : Level
+var player : Player
 
 func _ready():
-	pass
+	player = preload("res://src/characters/player/Player.tscn").instance()
