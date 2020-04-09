@@ -36,7 +36,7 @@ func enter():
 	cooldown_timer.start()
 	
 	owner.play_anim("dash_start")
-	AudioLib.play_sound("player/dash", 2, owner, false, 1 + randf() * .1)
+	AudioLib.play_sound("player/dash", 2, owner, false, 1 + randf() * .1, -10)
 
 func update(delta):
 	if distance_travelled > distance:
@@ -52,10 +52,9 @@ func exit():
 #	print("Finished dash in " + str(OS.get_ticks_msec() - start_time))
 	pass
 
-func on_animation_finished(anim_name):
+func on_animation_finished(_anim_name):
 	pass
 
 func set_cooldown(cd):
-	print("set cooldown")
 	cooldown = cd
 	cooldown_timer.wait_time = cooldown

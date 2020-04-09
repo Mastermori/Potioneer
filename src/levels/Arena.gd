@@ -1,5 +1,3 @@
-extends Node2D
+extends Level
 
 
-func _ready():
-	pass

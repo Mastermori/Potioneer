@@ -21,15 +21,16 @@ func enter():
 func handle_input(event : InputEvent):
 	if event.is_action_pressed("dash"):
 		emit_signal("transition", "dash")
+	if event.is_action_pressed("attack"):
+		emit_signal("transition", "punch")
 
-func update(delta):
+func update(_delta):
 	var input_dir : Vector2 = get_input_direction()
 	if not input_dir:
 		emit_signal("transition", "idle")
 		return
 	
-	var input_angle = rad2deg(input_dir.angle_to(Vector2.RIGHT)) + 180
-	var walk_index = int(round(input_angle / 45) + 6) % 8
+	var walk_index = get_numeric_direction(input_dir)
 	owner.play_anim("walk_" + str(walk_index))
 	
 	if step_sound_timer.is_stopped():

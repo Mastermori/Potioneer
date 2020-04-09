@@ -34,14 +34,13 @@ class Track:
 				player = Music.create_audio_player(_full)
 		else:
 			player = Music.create_audio_player(_start)
-			print(player)
-		print("Crated player")
 		player.play()
 	
 	func loop():
 		var new_player = Music.create_audio_player(_loops[randi() % _loops.size()])
 		Music.transition(player, new_player, .1)
 		player = new_player
+		player.play()
 		loop_counter += 1
 	
 	func end():
@@ -67,30 +66,33 @@ class Track:
 				_full = load(path_to_dir.replace(".import", ""))
 			else:
 				printerr("The file given to the track is not a valid full track file: ")
-				print(path_to_dir)
+				printerr(path_to_dir)
 		else:
 			var dir : Directory = Directory.new()
 			if dir.open(path_to_dir) == OK:
+				# warning-ignore:return_value_discarded
 				dir.list_dir_begin(true)
 				var file_name = dir.get_next()
 				while file_name != "":
 					if dir.current_is_dir() and file_name == "loops":
-						_loops = AudioLib.get_audio_from_path(path_to_dir)
+						_loops = AudioLib.get_audio_from_path(path_to_dir + "/" + "loops/")
 					elif not dir.current_is_dir() and (file_name.ends_with("wav.import") or file_name.ends_with("ogg.import")):
 						var audio_type = file_name.replace(name + "_", "").replace(".wav.import", "").replace(".ogg.import", "")
 						if audio_type == "start":
-							_start = load(path_to_dir + file_name.replace(".import", ""))
+							_start = load(path_to_dir + "/" + file_name.replace(".import", ""))
 						elif audio_type == "end":
-							_end = load(path_to_dir + file_name.replace(".import", ""))
+							_end = load(path_to_dir + "/" + file_name.replace(".import", ""))
 					file_name = dir.get_next()
 			else:
-				print("An error occurred when trying to access the path to this track:")
-				print(path_to_dir)
+				printerr("An error occurred when trying to access the path to this track:")
+				printerr(path_to_dir)
 
 func _ready():
 	timer.one_shot = true
+	# warning-ignore:return_value_discarded
 	timer.connect("timeout", self, "play_next_part")
 	add_child(timer)
+	# warning-ignore:return_value_discarded
 	tween.connect("tween_completed", self, "transition_finished")
 	add_child(tween)
 	for mood in Mood.values():
@@ -99,6 +101,7 @@ func _ready():
 		var mood_path = "res://assets/music/" + mood_name + "/"
 		if dir.open(mood_path) == OK:
 			music[mood] = []
+			# warning-ignore:return_value_discarded
 			dir.list_dir_begin(true)
 			var dir_name = dir.get_next()
 			while dir_name != "":
@@ -125,10 +128,6 @@ func set_mood_priority(mood : int):
 	play_next_part()
 
 func start():
-#	print(music)
-#	for mood in music:
-#		for track in music[mood]:
-#			print(track._full)
 	next_track()
 
 func play_next_part():
@@ -136,13 +135,13 @@ func play_next_part():
 		if current_track.ended:
 			next_track()
 		else:
-			var change_track : bool = randf() < (current_track.loop_counter - 1) * .1
+			var change_track : bool = randf() < (current_track.loop_counter - 1) * 1
 			if change_track:
 				current_track.end()
 				timer.start(current_track.get_current_time_left() / 2)
 			else:
 				current_track.loop()
-				timer.start(clamp(current_track.get_current_time_left() - crossfade_duration, 0.1, 10000))
+				timer.start(current_track.get_current_time_left() - .1)
 	else:
 		next_track()
 
@@ -151,7 +150,7 @@ func next_track():
 	new_track.play()
 	if current_track:
 		var time_left = current_track.get_current_time_left()
-		transition(current_track.player, new_track.player, clamp(time_left, 0.1, crossfade_duration))
+		transition(current_track.player, new_track.player, clamp(time_left, .1, crossfade_duration))
 	current_track = new_track
 	if current_track.is_loopable:
 		timer.start(current_track.get_current_time_left() - .1)
@@ -165,9 +164,11 @@ func get_random_track() -> Track:
 	return possibilities[randi() % possibilities.size()]
 
 func transition(from : AudioStreamPlayer, to : AudioStreamPlayer, duration : float):
-	print("Transition duration: " + str(duration))
+	# warning-ignore:return_value_discarded
 	tween.interpolate_property(from, "volume_db", from.volume_db, -40, duration, Tween.TRANS_CUBIC, Tween.EASE_IN)
+	# warning-ignore:return_value_discarded
 	tween.interpolate_property(to, "volume_db", -40, 0, duration, Tween.TRANS_CUBIC, Tween.EASE_IN)
+	# warning-ignore:return_value_discarded
 	tween.start()
 
 func transition_finished(_object, _key):
@@ -182,11 +183,12 @@ func create_audio_player(audio : AudioStream, volume_db := 0.0, pitch_scale := 1
 	if pitch_scale <= 0:
 		pitch_scale = 0.001
 	audio_stream_player.pitch_scale = pitch_scale
+	# warning-ignore:return_value_discarded
 	audio_stream_player.connect("finished", audio_stream_player, "queue_free")
 	return audio_stream_player
 
 #func load_music_from_dir(name : String, extra_path := "", music_path := "res://assets/music/") -> Dictionary:
-#	var dir = Directory.new()
+#	var dir = Directory.new()5
 #	var sounds_from_dir := {}
 #	var path = music_path + extra_path + name + "/"
 #	print("looking for: " + path)

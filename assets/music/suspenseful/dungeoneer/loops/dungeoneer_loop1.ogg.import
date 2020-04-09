@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/dungeoneer_loop1.ogg-2b1c4879a9f4738f160cf3f558501d2c.oggstr"
+
+[deps]
+
+source_file="res://assets/music/suspenseful/dungeoneer/loops/dungeoneer_loop1.ogg"
+dest_files=[ "res://.import/dungeoneer_loop1.ogg-2b1c4879a9f4738f160cf3f558501d2c.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

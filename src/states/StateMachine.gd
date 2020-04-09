@@ -30,7 +30,7 @@ func _physics_process(delta):
 	current_state.update(delta)
 
 
-func _on_animation_finished(anim_name):
+func on_animation_finished(anim_name):
 	if not _active:
 		return
 	current_state.on_animation_finished(anim_name)
@@ -44,6 +44,10 @@ func _change_state(state_name):
 #		print(state.name)
 #	print("Tried to change with: " + state_name)
 	
+	# Always stack these states
+	if state_name in ["stagger"]:
+		states_stack.push_front(states_map[state_name])
+	
 	current_state.exit()
 	
 	if state_name == "previous":
@@ -54,8 +58,8 @@ func _change_state(state_name):
 	current_state = states_stack[0]
 	emit_signal("state_changed", current_state)
 	
-	if state_name != "previous":
-		current_state.enter()
+#	if state_name != "previous":
+	current_state.enter()
 
 
 func set_active(value):

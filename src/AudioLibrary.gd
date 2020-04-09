@@ -34,15 +34,15 @@ func get_audio_from_path(absolute_path : String) -> Array:
 			file_name = dir.get_next()
 		return sounds_from_dir
 	else:
-		print("An error occurred when trying to access the path:")
-		print(absolute_path)
+		printerr("An error occurred when trying to access the path:")
+		printerr(absolute_path)
 		return []
 
 func play_music(name : String , index : int, pitch_scale = 1.0, volume_db = 0.0, bus = "Music") -> void:
 	if not music.has(name):
 		add_music(name)
 		if music[name].size() < 1:
-			print("Can't find music: " + str(name))
+			printerr("Can't find music: " + str(name))
 			return
 	play_audio(music[name][index], self, false, pitch_scale, volume_db, bus)
 
@@ -53,7 +53,7 @@ func play_sound(name : String, index : int, parent : Node, is_positional := fals
 	if not sounds.has(name):
 		add_sound(name)
 		if sounds[name].size() < 1:
-			print("Can't find sound: " + str(name))
+			printerr("Can't find sound: " + str(name))
 			return
 	play_audio(sounds[name][index], parent, is_positional, pitch_scale, volume_db, bus)
 
@@ -74,6 +74,7 @@ func play_audio(audio : AudioStream, parent : Node, is_positional := false, pitc
 		pitch_scale = 0.001
 	audio_stream_player.pitch_scale = pitch_scale
 	audio_stream_player.play()
+	# warning-ignore:return_value_discarded
 	audio_stream_player.connect("finished", audio_stream_player, "queue_free")
 
 func set_sfx_volume(value : float):
