@@ -17,7 +17,7 @@ var health : float
 var state_machine : StateMachine
 var impulse := Vector2.ZERO
 
-onready var hitbox := $Hitbox
+onready var hitbox : Area2D = $Hitbox
 onready var sprite := $Sprite
 onready var character_anims := $CharacterAnimations
 
@@ -51,7 +51,6 @@ func _physics_process(delta):
 func take_damage(amount : int):
 	health -= amount
 	if health <= 0:
-		hitbox.set_deferred("monitorable", false)
 		die()
 	else:
 		if can_stagger and state_machine:
@@ -60,6 +59,7 @@ func take_damage(amount : int):
 		emit_signal("took_damage", health, health + amount, max_health)
 
 func die():
+	hitbox.set_deferred("monitorable", false)
 	state_machine._change_state("die")
 	emit_signal("died")
 

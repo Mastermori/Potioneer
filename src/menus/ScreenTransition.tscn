@@ -20,7 +20,7 @@ void fragment(){
 
 [sub_resource type="ShaderMaterial" id=2]
 shader = SubResource( 1 )
-shader_param/cutoff = 1.0
+shader_param/cutoff = 0.0
 shader_param/smooth_size = 0.5
 shader_param/mask = ExtResource( 1 )
 
@@ -54,6 +54,18 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1.86607, 1 ),
 "update": 0,
 "values": [ 0.0, 1.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:mouse_filter")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 2 ]
 }
 
 [sub_resource type="Animation" id=5]

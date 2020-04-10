@@ -26,12 +26,13 @@ func _input(event):
 	if event.is_action_pressed("debug"):
 		Music.set_mood_priority(Music.Mood.PEACEFUL)
 		die()
-	if event.is_action_pressed("throw"):
+	if event.is_action_pressed("throw") and not state_machine.current_state is Die:
 		var potion = preload("res://src/potions/Potion.tscn").instance()
 		var mouse_dir : Vector2 = (get_global_mouse_position() - global_position).normalized()
 		add_child(potion)
 		potion.global_position = potion_spawn.global_position
 		potion.throw(potion_speed * mouse_dir)
+		play_anim("throw_" + str($PlayerStateMachine/PlayerWalking.get_numeric_direction(mouse_dir)))
 
 func _physics_process(_delta):
 	pass
@@ -55,7 +56,6 @@ func _on_DeathTimer_timeout():
 func transition_finished():
 	print("Game over!")
 	get_tree().change_scene_to(preload("res://src/menus/DeathScreen.tscn"))
-
 
 func add_animations():
 	# add walking animations

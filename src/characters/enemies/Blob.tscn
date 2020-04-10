@@ -130,11 +130,11 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="CapsuleShape2D" id=7]
+[sub_resource type="CapsuleShape2D" id=6]
 radius = 5.0
 height = 13.0
 
-[sub_resource type="CircleShape2D" id=6]
+[sub_resource type="CircleShape2D" id=7]
 radius = 15.0
 
 [node name="Blob" instance=ExtResource( 1 )]
@@ -185,7 +185,7 @@ death_sound = "blob/death"
 [node name="Collider" type="CollisionShape2D" parent="." index="5"]
 position = Vector2( 0, 2 )
 rotation = 1.5708
-shape = SubResource( 7 )
+shape = SubResource( 6 )
 
 [node name="AggroArea" parent="." index="6"]
 visible = false
@@ -201,5 +201,10 @@ collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" index="0"]
 modulate = Color( 0.964706, 0, 0, 1 )
-shape = SubResource( 6 )
+shape = SubResource( 7 )
+
+[node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="." index="9"]
+rect = Rect2( -50, -50, 100, 100 )
 [connection signal="area_entered" from="Hurtbox" to="BlobStateMachine/BlobChase" method="_on_Hurtbox_area_entered"]
+[connection signal="screen_entered" from="VisibilityEnabler2D" to="." method="_on_VisibilityEnabler2D_screen_entered"]
+[connection signal="screen_exited" from="VisibilityEnabler2D" to="." method="_on_VisibilityEnabler2D_screen_exited"]

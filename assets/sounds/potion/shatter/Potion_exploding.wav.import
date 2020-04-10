@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Potion_exploding.wav-ba870395d7646d6d89a1fb408b8af005.sample"
+
+[deps]
+
+source_file="res://assets/sounds/potion/shatter/Potion_exploding.wav"
+dest_files=[ "res://.import/Potion_exploding.wav-ba870395d7646d6d89a1fb408b8af005.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -18,8 +18,9 @@ func _apply_effect(enemy : Enemy):
 	enemy.take_damage(damage)
 
 func _explode():
-	vel = Vector2.ZERO
+	set_physics_process(false)
 	anim_player.play("explode")
+	AudioLib.play_sound("potion/shatter", 0, self, true)
 
 func throw(init_vel : Vector2, extra_distance := 0.0):
 	vel = init_vel

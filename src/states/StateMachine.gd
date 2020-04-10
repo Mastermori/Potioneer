@@ -17,9 +17,6 @@ func ready():
 	for child in get_children():
 		child.connect("transition", self, "_change_state")
 	set_active(true)
-	states_stack.push_front(get_node(default_state))
-	current_state = states_stack[0]
-	current_state.enter()
 
 func _input(event):
 	if not _active:
@@ -69,3 +66,7 @@ func set_active(value):
 	if not value:
 		states_stack = []
 		current_state = null
+	elif current_state == null:
+		states_stack.push_front(get_node(default_state))
+		current_state = states_stack[0]
+		current_state.enter()
